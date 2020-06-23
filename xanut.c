@@ -7,7 +7,7 @@ const int A = 19;
 #define LENGTH  20
 #define MAX     19
 
-typedef struct
+typedef struct //creating the type of the products
 {
     float price;
     char* product;
@@ -19,14 +19,9 @@ apranq;
 int main(void)
 {
     FILE* fuf; 
-    
-    float val1;
-    char desc1[MAX];
-    char desc2[MAX];
-    int val2;
     int rc;
 
-    fuf = fopen("vesh.csv", "r");
+    fuf = fopen("vesh.csv", "r"); //opening the file that contains the products 
     if (fuf == NULL)
     {
         perror("fopen");
@@ -37,23 +32,23 @@ int main(void)
     
     for (int o = 0; o < A; o++)
     {
-        menu[o].product = malloc(LENGTH * sizeof (char));
+        menu[o].product = malloc(LENGTH * sizeof (char)); //allocating memory to store char* pointers in arrays
         if (menu[o].product == NULL)
         {
             perror("malloc");
             return 1;
         }
     
-        menu[o].department = malloc(LENGTH * sizeof (char));
+        menu[o].department = malloc(LENGTH * sizeof (char)); //allocating memory to store char* pointers in arrays
         if (menu[o].department == NULL)
         {
             perror("malloc");
             return 1;
         }
-        
+        //reading the price, the product, the department, the items left from the vesh.csv file!
         rc = fscanf(fuf, "%f, %[A-Za-z-], %[A-Za-z ], %d ", &menu[o].price, menu[o].product, menu[o].department, &menu[o].stock);
     
-//        if (rc == 4)
+//        if (rc == 4) just checking if the assignments are correct
 //        {
 //            printf("Price: %.01f\t\t", menu[o].price);
 //            printf("Product: %s\t\t", menu[o].product);
